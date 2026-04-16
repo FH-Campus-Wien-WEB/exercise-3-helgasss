@@ -21,9 +21,36 @@ app.use(express.static(path.join(__dirname, 'files')));
    return only movies that have the given genre
  */
 app.get('/movies', function (req, res) {
-  let movies = Object.values(movieModel)
-  res.send(movies);
-})
+    // Wandelt das movieModel Objekt in ein Array um [cite: 6]
+    let movies = Object.values(movieModel);
+    
+    // Task 1.4: Query-Parameter 'genre' auslesen 
+    const genreFilter = req.query.genre;
+
+    if (genreFilter) {
+        // Filtert die Liste: Gib nur Filme zurück, die das Genre enthalten 
+        let filteredMovies = movies.filter(movie => movie.Genres.includes(genreFilter));
+        res.send(filteredMovies);
+    } else {
+        // Wenn kein Parameter da ist (z.B. Button "All"), schick alle Filme 
+        res.send(movies);
+    }
+});
+app.get('/genres', function (req, res) {
+    // 1. Alle Filme aus dem Modell holen (als Array)
+    const movies = Object.values(movieModel);
+
+    // 2. Alle Genres aus allen Filmen in einer Liste sammeln
+    // .flatMap geht durch jeden Film und holt die Genre-Listen heraus
+    let allGenres = movies.flatMap(movie => movie.Genres);
+
+    // 3. Duplikate entfernen (Set) und alphabetisch sortieren (sort)
+    // Wir wollen "Drama" nicht fünfmal in der Liste haben.
+    let uniqueGenres = [...new Set(allGenres)].sort();
+
+    // 4. Die fertige Liste an den Browser schicken
+    res.json(uniqueGenres);
+});
 
 // Configure a 'get' endpoint for a specific movie
 app.get('/movies/:imdbID', function (req, res) {

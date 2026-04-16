@@ -8,13 +8,26 @@ main {
   color: #333;
 }
 
-button {
-    padding: 4px;
-    border-width: 1px;
+/* Styling für echte Buttons UND unsere Edit-Links mit der Klasse .button aus Ex_2 */
+button, .button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 8px;
+    margin-top: 10px;
+    border: 1px solid #0288d1;
     border-radius: 4px;
-    font-size: 105%;
+    background-color: #0288d1;
+    color: white;
+    text-decoration: none; /* Ganz wichtig: entfernt den Link-Unterstrich */
+    font-size: 110%;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.2s; /* Macht das Hovern geschmeidiger */
 }
 
-button:hover {
-  background-color: darkgray;
+/* Der Effekt, wenn man mit der Maus drüberfährt */
+button:hover, .button:hover {
+    background-color: #01579b;
+    border-color: #01579b;
+    color: white;
 }
