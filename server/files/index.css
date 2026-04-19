@@ -81,13 +81,18 @@ body {
  nav ul {
     display: flex;
     flex-direction: column; /* Buttons untereinander */
-    gap: 10px;              /* Gleichmäßiger Abstand zwischen den Buttons */
+    align-items: flex-start; /* Task 3: Richtet die Buttons linksbündig aus */
+    gap: 5px;                /* Etwas weniger Abstand für den kompakteren Look */
     padding: 10px;
     list-style: none;       /* Entfernt die Aufzählungspunkte */
 }
 
 nav button {
-    width: 100%;            /* Buttons nutzen die volle Breite der Nav-Leiste */
+    width: auto;             /* Task 3: Button wird nur so breit wie sein Text */
+    min-width: 80px;         /* Sorgt für eine einheitliche Mindestbreite */
+    padding: 2px 8px;        /* Weniger Innenabstand macht den Button kleiner */
+    font-size: 0.9em;        /* Verkleinert die Schriftart ein wenig */
+    cursor: pointer;
 }
 
 /* Task 3.3. Make the main element a Flexbox container */
@@ -108,6 +113,16 @@ footer {
     align-items: center;
     padding: 10px;
     grid-area: f;
+}
+footer a {
+    color: #ffffff;          /* Weiß oder eine Farbe deiner Wahl */
+    text-decoration: none;   /* Entfernt den Standard-Unterstrich */
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline; /* Der Unterstrich erscheint nur, wenn man mit der Maus drüberfährt */
+    color: #cccccc;            /* Leichte Farbänderung beim Drüberfahren */
 }
 
 /* From here on styling from exercise 1 */
